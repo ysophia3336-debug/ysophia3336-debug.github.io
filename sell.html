@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="title">Sell an Item</h1>
+
+<form method="POST" class="card" style="max-width:500px; margin:auto;">
+
+    <!-- Product Name -->
+    <input type="text" name="name" placeholder="Product Name" required
+    style="width:100%; padding:0.5rem; margin-bottom:1rem; border-radius:8px; border:1px solid #ccc;">
+
+    <!-- Price -->
+    <input type="number" step="0.01" name="price" placeholder="Price" required
+    style="width:100%; padding:0.5rem; margin-bottom:1rem; border-radius:8px; border:1px solid #ccc;">
+
+    <!-- Image URL -->
+    <input type="text" name="img" id="imgInput"
+    placeholder="Paste image URL here"
+    required
+    style="width:100%; padding:0.5rem; margin-bottom:1rem; border-radius:8px; border:1px solid #ccc;">
+
+    <!-- Live Preview -->
+    <img id="preview"
+    style="max-width:100%; display:none; border-radius:8px; margin-bottom:1rem;">
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn">List Item</button>
+
+</form>
+
+<!-- JS for preview + drag/drop -->
+<script>
+const input = document.getElementById("imgInput");
+const preview = document.getElementById("preview");
+
+// Show preview only for valid image sources
+input.addEventListener("input", () => {
+    const val = input.value.trim();
+
+    if (val.startsWith("http") || val.startsWith("/static")) {
+        preview.src = val;
+        preview.style.display = "block";
+    } else {
+        preview.style.display = "none";
+    }
+});
+</script>
+
+{% endblock %}

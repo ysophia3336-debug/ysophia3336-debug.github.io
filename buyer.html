@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+{% for product in products %}
+    <div>
+        <img src="{{ product.img }}" alt="{{ product.name }}">
+        <h3>{{ product.name }}</h3>
+        <p>${{ product.price }}</p>
+        <a href="{{ url_for('buy', pid=product.id) }}">Buy Now</a>
+        <a href="{{ url_for('add_to_cart', pid=product.id) }}">Add to Cart</a>
+    </div>
+{% endfor %}
+</html>
